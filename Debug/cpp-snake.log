@@ -1,1 +1,8 @@
-﻿  main.cpp
+﻿  snake.cpp
+  game.cpp
+  board.cpp
+  Generating Code...
+  Compiling...
+  main.cpp
+  Generating Code...
+  cpp-snake.vcxproj -> C:\Users\Administrator\Desktop\Visual Studio\cpp-snake\Debug\cpp-snake.exe

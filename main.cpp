@@ -1,8 +1,10 @@
-#include <cstdio>
+#include "game.h"
 
-int main()
+int main(int argc, char* argv[])
 {
-	printf("Hello");
+	Game game;
+	game.Init();
+	game.Run();
 
 	return 0;
 }

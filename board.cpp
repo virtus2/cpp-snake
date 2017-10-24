@@ -9,6 +9,18 @@ void Board::Init()
 			tile_map[i][j].xpos = i;
 			tile_map[i][j].ypos = j;
 			tile_map[i][j].hasFood = false;
+			tile_map[i][j].isSnake = false;
 		}
+	}
+}
+
+void Board::SetSnake(body* head)
+{
+	body* current;
+	current = head;
+	while (current)
+	{
+		tile_map[current->ypos][current->xpos].isSnake = true;
+		current = current->next;
 	}
 }

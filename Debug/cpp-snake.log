@@ -1,8 +1,10 @@
-﻿  snake.cpp
-  game.cpp
-  board.cpp
-  Generating Code...
-  Compiling...
+﻿  tile.cpp
+  snake.cpp
   main.cpp
+  game.cpp
+game.cpp(12): warning C4551: function call missing argument list
+game.cpp(12): warning C4996: 'kbhit': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _kbhit. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\conio.h(458): note: see declaration of 'kbhit'
+  board.cpp
   Generating Code...
   cpp-snake.vcxproj -> C:\Users\Administrator\Desktop\Visual Studio\cpp-snake\Debug\cpp-snake.exe

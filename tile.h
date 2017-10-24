@@ -5,5 +5,6 @@ struct Tile
 	int xpos;
 	int ypos;
 	bool hasFood;
+	bool isSnake;
 };
 #endif

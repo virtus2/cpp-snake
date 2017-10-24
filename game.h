@@ -13,5 +13,9 @@ class Game
 	public:
 	void Init();
 	void Run();
+	void Input();
+	void Update();
+	void Render();
+	
 };
 #endif

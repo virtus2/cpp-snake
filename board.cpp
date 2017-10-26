@@ -1,6 +1,6 @@
 #include "board.h"
-#include <random>
-#include <time.h>
+#include <cstdlib>
+#include <ctime>
 void Board::Init()
 {
 	for (int i = 0; i < HEIGHT; i++)

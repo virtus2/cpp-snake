@@ -28,11 +28,29 @@ void Snake::SetDirection(int key)
 {
 	switch (key)
 	{
-		// UP-ARROW
-		case 72: dirct = UP; break;
-		case 80: dirct = DOWN; break;
-		case 75: dirct = LEFT; break; 
-		case 77: dirct = RIGHT; break;
+		case 72: 
+			if (dirct == DOWN) 
+				return;
+			dirct = UP; 
+			break; // UP ARROW key
+
+		case 80: 
+			if (dirct == UP)
+				return;
+			dirct = DOWN;
+			break; // DOWN ARROW Key
+
+		case 75: 
+			if (dirct == RIGHT) 
+				return;
+			dirct = LEFT; 
+			break; // LEFT ARROW Key
+
+		case 77: 
+			if (dirct == LEFT)
+				return;
+			dirct = RIGHT; 
+			break; // RIGHT ARROW Key
 	}
 }
 

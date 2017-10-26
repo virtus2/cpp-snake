@@ -19,10 +19,13 @@ void Game::Input()
 	if (kbhit())
 	{
 		int key = getch();
+		if (key == 27)
+		{ // if press escape key then quit 
+			isRunning = false; 
+			return;
+		}
 		if (key) key = getch();
 		
-		// Need esc key process to turn off the game
-		// if pressed esc key; isRunning = false;
 		snake.SetDirection(key);
 	}
 }
@@ -57,7 +60,7 @@ void Game::Update()
 
 void Game::Render()
 {
-	printf("\n\nScore: %d\n", score);
+	printf("\n\nScore: %d\t Prees ESC to Quit\n", score);
 	for (int i = 0; i < HEIGHT; i++)
 	{
 		for (int j = 0; j < WIDTH; j++)

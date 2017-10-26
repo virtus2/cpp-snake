@@ -24,7 +24,17 @@ void Game::Input()
 		snake.SetDirection(key);
 	}
 }
+void Game::ClearScreen()
+{
+	HANDLE hOut;
+	COORD Position;
 
+	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	Position.X = 0;
+	Position.Y = 0;
+	SetConsoleCursorPosition(hOut, Position);
+}
 void Game::Update()
 {
 	board.DeleteSnake(snake.GetHead());
@@ -72,8 +82,8 @@ void Game::Run()
 		// input
 		Input();
 		Update();
-		Sleep(200); // Game speed? flickering issue with system("cls")
-		system("cls"); // Clear the console screen
+		Sleep(100);
+		ClearScreen();// Game speed? flickering issue with system("cls")
 		Input(); // Input latency issue?
 		Render();
 		if (isRunning == false)

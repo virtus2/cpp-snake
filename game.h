@@ -10,13 +10,14 @@ class Game
 	Snake snake;
 	bool isRunning;
 	bool isFoodOnMap;
-
-	public:
-	void Init();
-	void Run();
+	void ClearScreen();
 	void Input();
 	void Update();
 	void Render();
 	void GameOver();
+
+	public:
+	void Init();
+	void Run();
 };
 #endif

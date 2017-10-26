@@ -9,6 +9,7 @@ class Game
 	Board board;
 	Snake snake;
 	bool isRunning;
+	bool isFoodOnMap;
 
 	public:
 	void Init();
@@ -16,6 +17,6 @@ class Game
 	void Input();
 	void Update();
 	void Render();
-	
+	void GameOver();
 };
 #endif

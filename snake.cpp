@@ -1,5 +1,6 @@
 #include "snake.h"
-#include "board.h" // for WIDTH, HEIGHT
+#include "board.h"
+
 void Snake::Init()
 {
 	// Set the length of snake by defined value in snake.h
@@ -8,10 +9,15 @@ void Snake::Init()
 	// position of (x, y) is equal to tile_map[y][x]
 	int x = WIDTH / 2;
 	int y = HEIGHT / 2;
-	head = new body(x , y, RIGHT);
-	head->next = new body(x-1 ,y, RIGHT);
-	tail = head->next->next = new body(x-2, y, RIGHT);
+	head = new body(x, y);
+	tail = head->next = new body(x - 1, y);
+	for (int i = 0; i < SNAKE_LENGTH - 1; i++)
+	{
+		tail = tail->next = new body(x - (i + 2), y);
+	}
 	tail->next = 0;
+	//tail = head->next->next = new body(x-2, y);
+	//tail->next = 0;
 	// 3rd body(tail) <- 2nd body <- 1st body(head)
 	// Start Direction is RIGHT
 	dirct = RIGHT;
@@ -41,22 +47,21 @@ void Snake::Grow()
 	switch (dirct)
 	{
 		case UP: 
-			tail = tail->next = new body(tail->xpos, tail->ypos - 1, UP);
+			tail = tail->next = new body(tail->xpos, tail->ypos - 1);
 			break;
 		case DOWN: 
-			tail = tail->next = new body(tail->xpos, tail->ypos + 1, DOWN);
+			tail = tail->next = new body(tail->xpos, tail->ypos + 1);
 			break;
 		case LEFT: 
-			tail = tail->next = new body(tail->xpos + 1, tail->ypos, LEFT);
+			tail = tail->next = new body(tail->xpos + 1, tail->ypos);
 			break;
 		case RIGHT: 
-			tail = tail->next = new body(tail->xpos - 1, tail->ypos, RIGHT);
+			tail = tail->next = new body(tail->xpos - 1, tail->ypos);
 			break;
 	}
+	tail->next = 0;
 	length++;
 }
-
-
 
 void Snake::Move()
 {
@@ -81,6 +86,7 @@ void Snake::Move()
 			head->xpos++;
 			break;
 	}
+	
 	while (current)
 	{
 		xtemp = current->xpos;

@@ -3,12 +3,11 @@
 enum DIRECTION { UP, DOWN, LEFT, RIGHT };
 typedef struct snake_body
 {
-	DIRECTION dirct;
 	int xpos, xprev;
 	int ypos, yprev;
 	snake_body* next;
 	snake_body() {};
-	snake_body(int x, int y, DIRECTION dirct) { xpos = x; ypos = y; dirct = dirct; }
+	snake_body(int x, int y) { xpos = x; ypos = y;}
 }body;
 
 #endif /* SNAKE_BODY_H */

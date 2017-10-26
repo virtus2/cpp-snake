@@ -1,7 +1,7 @@
 #ifndef SNAKE_H
 #define SNAKE_H
 #include "snake_body.h"
-#define SNAKE_LENGTH 3
+#define SNAKE_LENGTH 3 // length of snake at start
 
 class Snake
 {

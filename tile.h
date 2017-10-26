@@ -7,5 +7,6 @@ struct Tile
 	bool hasFood;
 	bool isSnake;
 	bool isBorder;
+	bool isHead;
 };
 #endif

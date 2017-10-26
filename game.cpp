@@ -6,6 +6,7 @@ void Game::Init()
 {
 	board.Init();
 	snake.Init();
+	board.SetSnake(snake.GetHead());
 	isRunning = false;
 }
 
@@ -15,6 +16,8 @@ void Game::Input()
 	{
 		int key = getch();
 		if (key) key = getch(); 
+		// Need esc key process to turn off the game
+		// if pressed esc key; isRunning = false;
 		snake.SetDirection(key);
 	}
 }
@@ -30,7 +33,7 @@ void Game::Render()
 	{
 		for (int j = 0; j < WIDTH; j++)
 		{
-			printf("бр");
+			board.tile_map[i][j].isSnake ? printf("бс") : printf("бр");
 		}
 		printf("\n");
 	}
@@ -43,7 +46,13 @@ void Game::Run()
 	while (isRunning)
 	{
 		// input
+		Input();
+		snake.Move();
+		board.SetSnake(snake.GetHead());
 		// update 
 		// render
+		Sleep(200);
+		system("cls"); // Clear the console screen
+		Render();
 	}
 }

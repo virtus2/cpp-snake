@@ -13,9 +13,11 @@ class Snake
 
 	public:
 	void SetDirection(int key);
+	body* GetHead();
 	void Init();
 	void Grow();
 	void Move();
+
 	
 };
 #endif /* SNAKE_H */

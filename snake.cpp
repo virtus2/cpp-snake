@@ -11,9 +11,28 @@ void Snake::Init()
 	head = new body(x , y, RIGHT);
 	head->next = new body(x-1 ,y, RIGHT);
 	tail = head->next->next = new body(x-2, y, RIGHT);
+	tail->next = 0;
 	// 3rd body(tail) <- 2nd body <- 1st body(head)
 	
 }
+
+void Snake::SetDirection(int key)
+{
+	switch (key)
+	{
+		// UP-ARROW
+		case 72: dirct = UP; break;
+		case 80: dirct = DOWN; break;
+		case 75: dirct = LEFT; break; 
+		case 77: dirct = RIGHT; break;
+	}
+}
+
+body * Snake::GetHead()
+{
+	return this->head;
+}
+
 void Snake::Grow()
 {
 	// Position of new body is different by direction of snake
@@ -35,17 +54,7 @@ void Snake::Grow()
 	length++;
 }
 
-void Snake::SetDirection(int key)
-{
-	switch (key)
-	{
-		// UP-ARROW
-		case 72: dirct = UP; break;
-		case 80: dirct = DOWN; break;
-		case 75: dirct = LEFT; break; 
-		case 77: dirct = RIGHT; break;
-	}
-}
+
 
 void Snake::Move()
 {

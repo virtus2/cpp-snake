@@ -19,10 +19,10 @@ void Board::Init()
 	}
 }
 
+// Create snake on array, Set bool isSnake of tile to true
+// if success return 0 return -1 when snake head strikes against the wall or body
 int Board::SetSnake(body* head)
 {
-	// Set snake on array, if success return 0
-	// return -1 when snake head strikes against the wall or body
 	body* current;
 	current = head->next;
 	tile_map[head->ypos][current->xpos].isHead = true;
@@ -37,6 +37,7 @@ int Board::SetSnake(body* head)
 	}
 	return 0;
 }
+// Remove snake on the map, Set bool isSnake of tile to false
 // this function can be combined into SetSnake(body* head, bool b)
 void Board::DeleteSnake(body* head)
 {
@@ -49,7 +50,7 @@ void Board::DeleteSnake(body* head)
 		current = current->next;
 	}
 }
-
+// Generate the food on random tile
 void Board::SetFood()
 {
 	srand((int)time(0));

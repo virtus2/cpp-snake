@@ -24,7 +24,10 @@ void Game::Input()
 
 void Game::Update()
 {
-
+		board.DeleteSnake(snake.GetHead());
+		snake.Move();
+		board.SetSnake(snake.GetHead());
+		
 }
 
 void Game::Render()
@@ -33,7 +36,14 @@ void Game::Render()
 	{
 		for (int j = 0; j < WIDTH; j++)
 		{
-			board.tile_map[i][j].isSnake ? printf("бс") : printf("бр");
+			if (board.tile_map[i][j].isSnake)
+				printf("бс");
+			else if (board.tile_map[i][j].isBorder)
+				printf("в╦");
+			else if (board.tile_map[i][j].hasFood)
+				printf("в╛");
+			else
+				printf("бр");
 		}
 		printf("\n");
 	}
@@ -47,12 +57,8 @@ void Game::Run()
 	{
 		// input
 		Input();
-		board.DeleteSnake(snake.GetHead());
-		snake.Move();
-		board.SetSnake(snake.GetHead());
-		// update 
-		// render
-		Sleep(200);
+		Update();
+		Sleep(200); // Game speed ... flickering issue
 		system("cls"); // Clear the console screen
 		Render();
 	}

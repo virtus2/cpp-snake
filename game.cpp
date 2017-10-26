@@ -47,6 +47,7 @@ void Game::Run()
 	{
 		// input
 		Input();
+		board.DeleteSnake(snake.GetHead());
 		snake.Move();
 		board.SetSnake(snake.GetHead());
 		// update 

@@ -24,3 +24,15 @@ void Board::SetSnake(body* head)
 		current = current->next;
 	}
 }
+
+void Board::DeleteSnake(body* head)
+{
+	body* current;
+	current = head;
+	while (current)
+	{
+		tile_map[current->ypos][current->xpos].isSnake = false;
+		current = current->next;
+	}
+}
+

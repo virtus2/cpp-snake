@@ -11,6 +11,7 @@ class Board
 
 	void Init();
 	void SetSnake(body* head);
+	void DeleteSnake(body* head);
 };
 
 #endif

@@ -13,6 +13,8 @@ void Snake::Init()
 	tail = head->next->next = new body(x-2, y, RIGHT);
 	tail->next = 0;
 	// 3rd body(tail) <- 2nd body <- 1st body(head)
+	// Start Direction is RIGHT
+	dirct = RIGHT;
 	
 }
 
@@ -39,16 +41,16 @@ void Snake::Grow()
 	switch (dirct)
 	{
 		case UP: 
-			tail = new body(tail->xpos, tail->ypos - 1, UP);
+			tail = tail->next = new body(tail->xpos, tail->ypos - 1, UP);
 			break;
 		case DOWN: 
-			tail = new body(tail->xpos, tail->ypos + 1, DOWN);
+			tail = tail->next = new body(tail->xpos, tail->ypos + 1, DOWN);
 			break;
 		case LEFT: 
-			tail = new body(tail->xpos + 1, tail->ypos, LEFT);
+			tail = tail->next = new body(tail->xpos + 1, tail->ypos, LEFT);
 			break;
 		case RIGHT: 
-			tail = new body(tail->xpos - 1, tail->ypos, RIGHT);
+			tail = tail->next = new body(tail->xpos - 1, tail->ypos, RIGHT);
 			break;
 	}
 	length++;
@@ -58,22 +60,35 @@ void Snake::Grow()
 
 void Snake::Move()
 {
-	snake_body* current;
-	current = head;
-	switch (current->dirct)
+	// Save previous position of the snake's head, body
+	int xprev = head->xpos;
+	int yprev = head->ypos;
+	// Save previous position for update xpre, yprev
+	int xtemp, ytemp;
+	body* current = head->next;
+	switch (dirct)
 	{
 		case UP:
-			current->ypos--;
+			head->ypos--;
 			break;
 		case DOWN:
-			current->ypos++;
+			head->ypos++;
 			break;
 		case LEFT:
-			current->xpos--;
+			head->xpos--;
 			break;
 		case RIGHT:
-			current->xpos++;
+			head->xpos++;
 			break;
 	}
-	current = current->next;
+	while (current)
+	{
+		xtemp = current->xpos;
+		ytemp = current->ypos;
+		current->xpos = xprev;
+		current->ypos = yprev;
+		xprev = xtemp;
+		yprev = ytemp;
+		current = current->next;
+	}
 }

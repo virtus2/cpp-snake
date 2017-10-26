@@ -45,10 +45,12 @@ void Game::Update()
 		board.SetFood();
 		isFoodOnMap = true;
 	}
+	// If snake's head strikes against wall or body
 	if (board.SetSnake(snake.GetHead()) != 0)
 	{
 		GameOver();
 	}
+	//  If snake's head reaches food
 	if (board.tile_map[snake.GetHead()->ypos][snake.GetHead()->xpos].hasFood)
 	{
 		snake.Grow();
@@ -67,13 +69,13 @@ void Game::Render()
 		{
 			if (board.tile_map[i][j].isSnake)
 			{
-				printf("¡á");
+				printf("Â¡Ã¡");
 			}
 			else if (board.tile_map[i][j].isBorder)
-				printf("¢Ë");
+				printf("Â¢Ã‹");
 			else if (board.tile_map[i][j].hasFood)
 			{
-				printf("¢¾");
+				printf("Â¢Â¾");
 			}
 			else
 				printf("  ");
@@ -86,10 +88,9 @@ void Game::Run()
 {
 	while (isRunning)
 	{
-		// input
 		Input();
 		Update();
-		Sleep(135);
+		Sleep(135); 
 		ClearScreen(); 
 		Render();
 		if (isRunning == false)

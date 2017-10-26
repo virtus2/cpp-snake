@@ -17,7 +17,6 @@ void Board::Init()
 			if (i == 0 || i == HEIGHT - 1) tile_map[i][j].isBorder = true;
 		}
 	}
-	SetFood();
 }
 
 int Board::SetSnake(body* head)
@@ -56,5 +55,10 @@ void Board::SetFood()
 	srand((int)time(0));
 	int yrand = rand() % (HEIGHT - 1) + 1;
 	int xrand = rand() % (WIDTH - 1) + 1;
+	if (tile_map[yrand][xrand].isBorder || tile_map[yrand][xrand].isSnake)
+	{
+		SetFood();
+		return;
+	}
 	tile_map[yrand][xrand].hasFood = true;
 }

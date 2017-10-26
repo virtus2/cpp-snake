@@ -10,6 +10,8 @@ void Game::Init()
 	board.SetFood();
 	isFoodOnMap = true;
 	isRunning = true;
+	score = 0;
+	hstdout = GetStdHandle(STD_OUTPUT_HANDLE);
 }
 
 void Game::Input()
@@ -26,14 +28,10 @@ void Game::Input()
 }
 void Game::ClearScreen()
 {
-	HANDLE hOut;
 	COORD Position;
-
-	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-
 	Position.X = 0;
 	Position.Y = 0;
-	SetConsoleCursorPosition(hOut, Position);
+	SetConsoleCursorPosition(hstdout, Position);
 }
 void Game::Update()
 {
@@ -51,6 +49,7 @@ void Game::Update()
 	if (board.tile_map[snake.GetHead()->ypos][snake.GetHead()->xpos].hasFood)
 	{
 		snake.Grow();
+		score++;
 		board.tile_map[snake.GetHead()->ypos][snake.GetHead()->xpos].hasFood = false;
 		isFoodOnMap = false;
 	}
@@ -58,18 +57,23 @@ void Game::Update()
 
 void Game::Render()
 {
+	printf("\n\nScore: %d\n", score);
 	for (int i = 0; i < HEIGHT; i++)
 	{
 		for (int j = 0; j < WIDTH; j++)
 		{
 			if (board.tile_map[i][j].isSnake)
+			{
 				printf("бс");
+			}
 			else if (board.tile_map[i][j].isBorder)
 				printf("в╦");
 			else if (board.tile_map[i][j].hasFood)
+			{
 				printf("в╛");
+			}
 			else
-				printf("бр");
+				printf("  ");
 		}
 		printf("\n");
 	}
@@ -82,9 +86,8 @@ void Game::Run()
 		// input
 		Input();
 		Update();
-		Sleep(100);
-		ClearScreen();// Game speed? flickering issue with system("cls")
-		Input(); // Input latency issue?
+		Sleep(135);
+		ClearScreen(); 
 		Render();
 		if (isRunning == false)
 			printf("\nGAME OVER!\n\n");

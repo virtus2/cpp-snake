@@ -3,7 +3,7 @@
 
 void Snake::Init()
 {
-	// Set the length of snake by defined value in snake.h
+	// Set the length of snake by defined value in snake.h 
 	length = SNAKE_LENGTH;
 	// Initial position is (WIDTH / 2 , HEIGHT / 2)
 	// position of (x, y) is equal to tile_map[y][x]
@@ -11,21 +11,21 @@ void Snake::Init()
 	int y = HEIGHT / 2;
 	head = new body(x, y);
 	tail = head->next = new body(x - 1, y);
+	// Create more body until length to be SNAKE_LENGTH
 	for (int i = 0; i < SNAKE_LENGTH - 1; i++)
 	{
 		tail = tail->next = new body(x - (i + 2), y);
 	}
 	tail->next = 0;
-	//tail = head->next->next = new body(x-2, y);
-	//tail->next = 0;
-	// 3rd body(tail) <- 2nd body <- 1st body(head)
-	// Start Direction is RIGHT
+	// Default start direction is RIGHT
 	dirct = RIGHT;
 	
 }
 
 void Snake::SetDirection(int key)
 {
+	// if pressed opposite key return
+	// else change direction
 	switch (key)
 	{
 		case 72: 
